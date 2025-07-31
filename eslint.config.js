@@ -7,19 +7,25 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-      eslintConfigPrettier,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+    globalIgnores(['dist']),
+    {
+        files: ['**/*.{ts,tsx}'],
+        extends: [
+            js.configs.recommended,
+            tseslint.configs.recommended,
+            reactHooks.configs['recommended-latest'],
+            reactRefresh.configs.vite,
+            eslintConfigPrettier,
+        ],
+        languageOptions: {
+            ecmaVersion: 2020,
+            globals: globals.browser,
+        },
+        rules: {
+            ...prettierConfig.rules,
+            'semi': ['error', 'always'],
+            'indent': ['error', 4, { "SwitchCase": 1 }],
+            '@typescript-eslint/no-explicit-any': 'error',
+        }
     },
-  },
 ])
