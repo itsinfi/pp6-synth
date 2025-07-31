@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Simple Synth</title>
     <link rel="stylesheet" href="synth.css">
 </head>
+
 <body>
     <div class="synth-controls">
         <h2>Synth Controls:</h2>
@@ -14,7 +16,8 @@
                 <span>Frequency (Hz):</span>
                 <span id="freqVal">440</span>
             </div>
-            <input type="range" id="freq" min="25" max="2000" value="440" step="1" oninput="updateLabel('freqVal', this.value)">
+            <input type="range" id="freq" min="25" max="2000" value="440" step="1"
+                oninput="updateLabel('freqVal', this.value)">
         </label>
 
         <h4>Filter Envelope</h4>
@@ -23,34 +26,40 @@
                 <span>Attack (s):</span>
                 <span id="fAttackVal">0.1</span>
             </div>
-            <input type="range" id="fAttack" min="0.01" max="2" value="0.1" step="0.01" oninput="updateLabel('fAttackVal', this.value)">
+            <input type="range" id="fAttack" min="0.01" max="2" value="0.1" step="0.01"
+                oninput="updateLabel('fAttackVal', this.value)">
         </label>
         <label>
             Sustain Frequency (Hz):
             <span id="fSustainVal">1000</span>
-            <input type="range" id="fSustain" min="200" max="5000" value="1000" step="10" oninput="updateLabel('fSustainVal', this.value)">
+            <input type="range" id="fSustain" min="200" max="5000" value="1000" step="10"
+                oninput="updateLabel('fSustainVal', this.value)">
         </label>
         <label>
             Decay + Release (s):
             <span id="fDRVal">0.3</span>
-            <input type="range" id="fDR" min="0.05" max="3" value="0.3" step="0.01" oninput="updateLabel('fDRVal', this.value)">
+            <input type="range" id="fDR" min="0.05" max="3" value="0.3" step="0.01"
+                oninput="updateLabel('fDRVal', this.value)">
         </label>
 
         <h4>Amplifier Envelope</h4>
         <label>
             Attack (s):
             <span id="aAttackVal">0.05</span>
-            <input type="range" id="aAttack" min="0.01" max="2" value="0.05" step="0.01" oninput="updateLabel('aAttackVal', this.value)">
+            <input type="range" id="aAttack" min="0.01" max="2" value="0.05" step="0.01"
+                oninput="updateLabel('aAttackVal', this.value)">
         </label>
         <label>
             Sustain Level (0–1):
             <span id="aSustainVal">0.8</span>
-            <input type="range" id="aSustain" min="0" max="1" value="0.8" step="0.01" oninput="updateLabel('aSustainVal', this.value)">
+            <input type="range" id="aSustain" min="0" max="1" value="0.8" step="0.01"
+                oninput="updateLabel('aSustainVal', this.value)">
         </label>
         <label>
             Decay + Release (s):
             <span id="aDRVal">0.3</span>
-            <input type="range" id="aDR" min="0.05" max="3" value="0.3" step="0.01" oninput="updateLabel('aDRVal', this.value)">
+            <input type="range" id="aDR" min="0.05" max="3" value="0.3" step="0.01"
+                oninput="updateLabel('aDRVal', this.value)">
         </label>
 
         <br><br>
@@ -59,4 +68,5 @@
 
     <script src="synth.js"></script>
 </body>
+
 </html>
