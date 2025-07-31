@@ -1,5 +1,5 @@
 import { manualSynthPanel } from '../data/manualSynthPanel';
-import type { SynthPatch } from '../types';
+import type { SynthPatch } from '../types/.index';
 
 let audioContext: AudioContext | null = null;
 

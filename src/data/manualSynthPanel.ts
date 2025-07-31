@@ -1,4 +1,4 @@
-import type { SynthPanel } from '../types';
+import type { SynthPanel } from '../types/.index';
 
 export const manualSynthPanel: SynthPanel = {
     freq: {

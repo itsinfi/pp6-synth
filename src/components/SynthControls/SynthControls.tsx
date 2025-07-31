@@ -3,7 +3,7 @@ import { manualSynthPanel } from '../../data/manualSynthPanel.ts';
 import { playNote } from '../../services/ManualSynthService.ts';
 import calculateInitSynthPatch from '../../utils/calculateInitSynthPatch.ts';
 import Button from '../Button/Button.tsx';
-import { SynthParameterSlider, type SynthValue } from '../SynthParameterSlider/index.ts';
+import { SynthParameterSlider, type SynthValue } from '../SynthParameterSlider/.index.ts';
 import './SynthControls.scss';
 
 const initSynthPatch = calculateInitSynthPatch();

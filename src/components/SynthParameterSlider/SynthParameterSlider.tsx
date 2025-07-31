@@ -1,4 +1,4 @@
-import type { SynthParameter, SynthValue } from '../../types';
+import type { SynthParameter, SynthValue } from '../../types/.index';
 import './SynthParameterSlider.scss';
 
 type SynthControlsProps = {
