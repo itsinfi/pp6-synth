@@ -1,6 +1,6 @@
 import type { MouseEventHandler, ReactNode } from 'react';
+import type { ButtonType } from '../../types';
 import './Button.scss';
-import type { ButtonType } from './Button.types';
 
 type ButtonProps = {
     buttonType: ButtonType;

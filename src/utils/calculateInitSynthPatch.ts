@@ -1,5 +1,5 @@
 import { manualSynthPanel } from '../data/manualSynthPanel';
-import type { SynthPatch } from '../pages/ManualSynthPanel';
+import type { SynthPatch } from '../types';
 
 export default function calculateInitSynthPatch(): SynthPatch {
     const initSynthPatch: SynthPatch = {

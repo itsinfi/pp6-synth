@@ -1,4 +1,4 @@
-import type { SynthParameter } from '../SynthParameterSlider';
+import type { SynthParameter } from './SynthParameter';
 
 export interface SynthPanel {
     freq: SynthParameter;

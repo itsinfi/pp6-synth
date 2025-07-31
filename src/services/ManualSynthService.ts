@@ -1,5 +1,5 @@
 import { manualSynthPanel } from '../data/manualSynthPanel';
-import type { SynthPatch } from '../pages/ManualSynthPanel';
+import type { SynthPatch } from '../types';
 
 let audioContext: AudioContext | null = null;
 
@@ -9,7 +9,6 @@ function readPatch(synthPatch: SynthPatch) {
             Math.min(manualSynthPanel[key].max, synthParameter),
             manualSynthPanel[key].min,
         );
-        console.log(key, synthParameter);
     });
 
     return synthPatch;
