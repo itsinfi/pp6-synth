@@ -20,12 +20,8 @@ function SynthParameterSelector({ name, param, handleSynthValueChange }: SynthCo
     return (
         <>
             <label>
-                <div className="row">
-                    <span>{label}:</span>
-                    <span>{value}</span>
-                </div>
-
-                <select onChange={handleInput}>
+                <span>{label}:</span> <br />
+                <select onChange={handleInput} value={value}>
                     {Object.keys(WaveForm).map((e) => {
                         return (
                             <option key={e} value={e}>

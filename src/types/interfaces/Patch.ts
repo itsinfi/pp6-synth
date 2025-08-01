@@ -3,6 +3,7 @@ import type { NumericParameter, Parameter, WaveParameter } from '../.index';
 export interface Patch {
     wave: WaveParameter;
     freq: NumericParameter;
+    fQ: NumericParameter;
     fAttack: NumericParameter;
     fSustain: NumericParameter;
     fDR: NumericParameter;

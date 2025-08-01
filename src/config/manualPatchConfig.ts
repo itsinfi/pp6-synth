@@ -9,6 +9,12 @@ export const DEFAULT_OSC_FREQ_MIN: number = 25;
 export const DEFAULT_OSC_FREQ_MAX: number = 2000;
 export const DEFAULT_OSC_FREQ_STEP: number = 0.1;
 
+export const DEFAULT_FILTER_RESONANCE: number = 5;
+export const DEFAULT_FILTER_RESONANCE_LABEL: string = 'Resonance (DB)';
+export const DEFAULT_FILTER_RESONANCE_MIN: number = 1;
+export const DEFAULT_FILTER_RESONANCE_MAX: number = 25;
+export const DEFAULT_FILTER_RESONANCE_STEP: number = 0.05;
+
 export const DEFAULT_FILTER_ENV_ATTACK: number = 0.1;
 export const DEFAULT_FILTER_ENV_ATTACK_LABEL: string = 'Attack (S)';
 export const DEFAULT_FILTER_ENV_ATTACK_MIN: number = 0.01;
@@ -56,6 +62,14 @@ export const DEFAULT_OSC_FREQ_CONFIG: NumericParameterConfig = {
     min: DEFAULT_OSC_FREQ_MIN,
     max: DEFAULT_OSC_FREQ_MAX,
     step: DEFAULT_OSC_FREQ_STEP,
+};
+
+export const DEFAULT_FILTER_RESONANCE_CONFIG: NumericParameterConfig = {
+    label: DEFAULT_FILTER_RESONANCE_LABEL,
+    init: DEFAULT_FILTER_RESONANCE,
+    min: DEFAULT_FILTER_RESONANCE_MIN,
+    max: DEFAULT_FILTER_RESONANCE_MAX,
+    step: DEFAULT_FILTER_RESONANCE_STEP,
 };
 
 export const DEFAULT_FILTER_ENV_ATTACK_CONFIG: NumericParameterConfig = {
@@ -114,6 +128,10 @@ export const DEFAULT_PATCH: Patch = {
     freq: {
         config: DEFAULT_OSC_FREQ_CONFIG,
         value: DEFAULT_OSC_FREQ,
+    },
+    fQ: {
+        config: DEFAULT_FILTER_RESONANCE_CONFIG,
+        value: DEFAULT_FILTER_RESONANCE,
     },
     fAttack: {
         config: DEFAULT_FILTER_ENV_ATTACK_CONFIG,
