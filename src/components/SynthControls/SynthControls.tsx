@@ -1,27 +1,27 @@
 import { useCallback, useState, type MouseEventHandler } from 'react';
-import { INIT_PATCH } from '../../config/manualPatchConfig.ts';
+import { INIT_PANEL } from '../../config/manualPanelConfig.ts';
 import { playNote } from '../../services/SynthPlayerService.ts';
-import type { Patch, WaveForm } from '../../types/.index.ts';
+import type { Panel, WaveForm } from '../../types/.index.ts';
 import { Button } from '../Button/.index.ts';
 import SynthParameterAdjuster from '../SynthParameterAdjuster/SynthParameterAdjuster.tsx';
 import './SynthControls.scss';
 
 function SynthControls() {
-    const [patch, setPatch] = useState<Patch>(INIT_PATCH);
+    const [panel, setPanel] = useState<Panel>(INIT_PANEL);
 
     const handleOnClick: MouseEventHandler<HTMLButtonElement> = () => {
-        playNote(patch);
+        playNote(panel);
     };
 
     const handleSynthValueChange = useCallback(
         (section: string, name: string, value: WaveForm | number) => {
-            setPatch((prevPatch) => ({
-                ...prevPatch,
+            setPanel((prevPanel) => ({
+                ...prevPanel,
                 [section]: {
-                    ...prevPatch[section],
+                    ...prevPanel[section],
                     content: {
-                        ...prevPatch[section].content,
-                        [name]: { ...prevPatch[section].content[name], value },
+                        ...prevPanel[section].content,
+                        [name]: { ...prevPanel[section].content[name], value },
                     },
                 },
             }));
@@ -35,7 +35,7 @@ function SynthControls() {
                 <h2>Synth Controls</h2>
             </div>
 
-            {Object.entries(patch).map(([key, section]) => (
+            {Object.entries(panel).map(([key, section]) => (
                 <div key={key}>
                     <h4>{section.label}</h4>
                     {Object.entries(section.content).map(([subKey, param]) => (

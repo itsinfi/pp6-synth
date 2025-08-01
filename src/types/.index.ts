@@ -2,6 +2,7 @@ export { isButtonType } from './enums/ButtonType';
 export type { ButtonType } from './enums/ButtonType';
 export { isWaveForm } from './enums/WaveForm';
 export type { WaveForm } from './enums/WaveForm';
+export type { Panel } from './interfaces/Panel';
 export type { Parameter } from './interfaces/Parameter';
 export type { ParameterConfig } from './interfaces/ParameterConfig';
 export { isNumericParameterConfig } from './interfaces/ParameterConfigs/NumericParameterConfig';
@@ -11,6 +12,7 @@ export type { WaveParameterConfig } from './interfaces/ParameterConfigs/WavePara
 export type { NumericParameter } from './interfaces/Parameters/NumericParameter';
 export type { WaveParameter } from './interfaces/Parameters/WaveParameter';
 export type { Patch } from './interfaces/Patch';
+export type { PlayedPatch } from './interfaces/PlayedPatch';
 export type { Section } from './interfaces/Section';
 export { isEnvelopeSection } from './interfaces/Sections/EnvelopeSection';
 export type { EnvelopeSection } from './interfaces/Sections/EnvelopeSection';

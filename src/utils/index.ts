@@ -1,2 +1,2 @@
 export { default as isEnumValue } from './isEnumValue';
-export { default as readPatch } from './readPatch';
+export { default as readPanel } from './readPanel';

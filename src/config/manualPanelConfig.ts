@@ -4,7 +4,7 @@ import type {
     NumericParameter,
     NumericParameterConfig,
     OscillatorSection,
-    Patch,
+    Panel,
     WaveForm,
     WaveParameter,
     WaveParameterConfig,
@@ -308,9 +308,9 @@ export const AMP_ENV_SECTION: EnvelopeSection = {
     },
 };
 
-// Patches ----------------------------------------------------------------------------------------------------------------------
+// Paneles ----------------------------------------------------------------------------------------------------------------------
 
-export const INIT_PATCH: Patch = {
+export const INIT_PANEL: Panel = {
     oscillator: OSC_SECTION,
     filter: FLT_SECTION,
     filterEnvelope: FLT_ENV_SECTION,

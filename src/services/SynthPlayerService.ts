@@ -1,5 +1,5 @@
-import type { Patch } from '../types/.index';
-import { readPatch } from '../utils';
+import type { Panel, PlayedPatch } from '../types/.index';
+import { readPanel } from '../utils';
 
 let audioContext: AudioContext | null = null;
 let currentOscillator: OscillatorNode | null = null;
@@ -17,20 +17,12 @@ function createSoftClipper(ctx: AudioContext) {
     return waveShaper;
 }
 
-export function playNote(patch: Patch) {
-    const ctx = audioContext ?? new window.AudioContext();
-    audioContext = ctx;
-
-    const now = ctx.currentTime;
-
-    // stop previously started note
-    currentOscillator?.stop();
-    currentOscillator?.disconnect();
-    currentAmp?.disconnect();
-
-    const {
+function generateSynthSound({
+    ctx,
+    now,
+    freq,
+    patch: {
         osc_wav,
-        osc_frq,
         flt_ctf,
         flt_res,
         flt_env_atk,
@@ -41,12 +33,12 @@ export function playNote(patch: Patch) {
         // amp_env_dec,
         amp_env_sus,
         amp_env_rel,
-    } = readPatch(patch);
-
+    },
+}: PlayedPatch) {
     // oscillator
     const osc = ctx.createOscillator();
     osc.type = osc_wav;
-    osc.frequency.setValueAtTime(osc_frq, now);
+    osc.frequency.setValueAtTime(freq, now);
 
     // filter
     const lpf = ctx.createBiquadFilter();
@@ -100,4 +92,36 @@ export function playNote(patch: Patch) {
     // store oscillator and amp
     currentOscillator = osc;
     currentAmp = amp;
+}
+
+export function playNote(panel: Panel) {
+    const ctx = audioContext ?? new window.AudioContext();
+    audioContext = ctx;
+
+    const now = ctx.currentTime;
+
+    // stop previously started note
+    currentOscillator?.stop();
+    currentOscillator?.disconnect();
+    currentAmp?.disconnect();
+
+    const { osc_frq: freq, ...patch } = readPanel(panel);
+
+    generateSynthSound({ ctx, now, freq, patch });
+}
+
+export function playChord(panel: Panel) {
+    const ctx = audioContext ?? new window.AudioContext();
+    audioContext = ctx;
+
+    const now = ctx.currentTime;
+
+    // stop previously started note
+    currentOscillator?.stop();
+    currentOscillator?.disconnect();
+    currentAmp?.disconnect();
+
+    const { osc_frq: freq, ...patch } = readPanel(panel);
+
+    generateSynthSound({ ctx, now, freq, patch });
 }
