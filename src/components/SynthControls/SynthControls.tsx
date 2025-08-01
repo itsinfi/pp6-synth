@@ -1,26 +1,24 @@
-import { useState, type MouseEventHandler } from 'react';
-import { manualSynthPanel } from '../../data/manualSynthPanel.ts';
+import { useCallback, useState, type MouseEventHandler } from 'react';
+import { DEFAULT_PATCH } from '../../config/manualPatchConfig.ts';
 import { playNote } from '../../services/ManualSynthService.ts';
-import calculateInitSynthPatch from '../../utils/calculateInitSynthPatch.ts';
-import Button from '../Button/Button.tsx';
-import { SynthParameterSlider, type SynthValue } from '../SynthParameterSlider/.index.ts';
+import type { Patch } from '../../types/.index.ts';
+import { Button } from '../Button/.index.ts';
+import SynthParameterAdjuster from '../SynthParameterAdjuster/SynthParameterAdjuster.tsx';
 import './SynthControls.scss';
 
-const initSynthPatch = calculateInitSynthPatch();
-
 function SynthControls() {
-    const [synthPatch, setSynthPatch] = useState(initSynthPatch);
+    const [patch, setPatch] = useState<Patch>(DEFAULT_PATCH);
 
-    const handleOnClick: MouseEventHandler<HTMLButtonElement> = () => {
-        playNote(synthPatch);
-    };
+    const handleOnClick: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
+        playNote(patch);
+    }, []);
 
-    const handleSynthValueChange = ({ key, value }: SynthValue) => {
-        setSynthPatch((previousSynthPatch) => ({
-            ...previousSynthPatch,
-            [key]: value,
+    const handleSynthValueChange = useCallback((name: string, value: string | number) => {
+        setPatch((prevPatch) => ({
+            ...prevPatch,
+            [name]: { config: { ...prevPatch[name].config }, value },
         }));
-    };
+    }, []);
 
     return (
         <div className="synth-controls">
@@ -28,11 +26,11 @@ function SynthControls() {
                 <h2>Synth Controls</h2>
             </div>
 
-            {Object.entries(manualSynthPanel).map(([key, synthParameter]) => (
-                <SynthParameterSlider
+            {Object.entries(patch).map(([key, param]) => (
+                <SynthParameterAdjuster
                     key={key}
-                    synthValue={{ key, value: synthPatch[key] }}
-                    synthParameter={synthParameter}
+                    name={key}
+                    param={param}
                     handleSynthValueChange={handleSynthValueChange}
                 />
             ))}

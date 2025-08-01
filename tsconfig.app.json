@@ -28,6 +28,10 @@
         "src/types/.index.ts",
         "src/pages/ManualSynthPanel/.index.ts",
         "src/services/.index.ts",
-        "src/components/SynthParameterSlider/.index.ts"
+        "src/components/SynthParameterAdjuster/.index.ts",
+        "src/components/Button/.index.ts",
+        "src/components/SynthControls/.index.ts",
+        "src/components/SynthParameterAdjuster/SynthParameterSlider/.index.ts",
+        "src/components/SynthParameterAdjuster/SynthParameterSelector/.index.ts"
     ]
 }

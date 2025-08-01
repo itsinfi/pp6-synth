@@ -1,1 +1,2 @@
-export { default as calculateInitSynthPatch } from './calculateInitSynthPatch';
+export { default as isEnumValue } from './isEnumValue';
+export { default as readPatch } from './readPatch';

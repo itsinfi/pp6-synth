@@ -1,23 +1,20 @@
-import type { SynthParameter, SynthValue } from '../../types/.index';
+import React, { useCallback } from 'react';
+import type { NumericParameter } from '../../../types/.index';
 import './SynthParameterSlider.scss';
 
 type SynthControlsProps = {
-    synthValue: SynthValue;
-    synthParameter: SynthParameter;
+    name: string;
+    param: NumericParameter;
     handleSynthValueChange: Function;
 };
 
-function SynthParameterSlider({
-    synthValue,
-    synthParameter,
-    handleSynthValueChange: handleSynthValueChange,
-}: SynthControlsProps) {
-    const { label, min, max, step } = synthParameter;
-    const { key, value } = synthValue;
+function SynthParameterSlider({ name, param, handleSynthValueChange }: SynthControlsProps) {
+    const { config, value } = param;
+    const { label, min, max, step } = config;
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        handleSynthValueChange({ key, value: Number(e.target.value) });
-    };
+    const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        handleSynthValueChange(name, Number(e.target.value));
+    }, []);
 
     return (
         <>

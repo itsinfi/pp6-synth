@@ -1,28 +1,17 @@
-import { manualSynthPanel } from '../data/manualSynthPanel';
-import type { SynthPatch } from '../types/.index';
+import type { Patch } from '../types/.index';
+import { readPatch } from '../utils';
 
 let audioContext: AudioContext | null = null;
 
-function readPatch(synthPatch: SynthPatch) {
-    Object.entries(synthPatch).forEach(([key, synthParameter]) => {
-        synthParameter = Math.max(
-            Math.min(manualSynthPanel[key].max, synthParameter),
-            manualSynthPanel[key].min,
-        );
-    });
-
-    return synthPatch;
-}
-
-export function playNote(synthPatch: SynthPatch) {
+export function playNote(patch: Patch) {
     const ctx = audioContext ?? new window.AudioContext();
     const now = ctx.currentTime;
 
-    const { freq, fAttack, fSustain, fDR, aAttack, aSustain, aDR } = readPatch(synthPatch);
+    const { wave, freq, fAttack, fSustain, fDR, aAttack, aSustain, aDR } = readPatch(patch);
 
     // oscillator
     const osc = ctx.createOscillator();
-    osc.type = 'square';
+    osc.type = wave;
     osc.frequency.setValueAtTime(freq, now);
 
     // filter
