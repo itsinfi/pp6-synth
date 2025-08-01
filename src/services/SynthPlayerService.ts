@@ -28,31 +28,47 @@ export function playNote(patch: Patch) {
     currentOscillator?.disconnect();
     currentAmp?.disconnect();
 
-    const { wave, freq, fQ, fAttack, fSustain, fDR, aAttack, aSustain, aDR } = readPatch(patch);
+    const {
+        osc_wav,
+        osc_frq,
+        flt_ctf,
+        flt_res,
+        flt_env_atk,
+        // flt_env_dec,
+        flt_env_sus,
+        flt_env_rel,
+        amp_env_atk,
+        // amp_env_dec,
+        amp_env_sus,
+        amp_env_rel,
+    } = readPatch(patch);
 
     // oscillator
     const osc = ctx.createOscillator();
-    osc.type = wave;
-    osc.frequency.setValueAtTime(freq, now);
+    osc.type = osc_wav;
+    osc.frequency.setValueAtTime(osc_frq, now);
 
     // filter
     const lpf = ctx.createBiquadFilter();
     lpf.type = 'lowpass';
-    lpf.Q.value = fQ;
+    lpf.Q.value = flt_res;
 
     // apply filter envelope
-    lpf.frequency.setValueAtTime(1, now);
-    lpf.frequency.linearRampToValueAtTime(fSustain, now + fAttack);
-    lpf.frequency.linearRampToValueAtTime(1, now + fAttack + fDR);
-    lpf.gain.value = Math.max(Math.max(1 - fQ * 0.02), 0);
+    lpf.frequency.setValueAtTime(flt_ctf, now);
+    lpf.frequency.linearRampToValueAtTime(flt_ctf + flt_env_sus, now + flt_env_atk);
+    lpf.frequency.linearRampToValueAtTime(flt_ctf, now + flt_env_atk + flt_env_rel);
+    lpf.gain.value = Math.max(Math.max(1 - flt_res * 0.02), 0);
 
     // amplifier
     const amp = ctx.createGain();
 
     // apply amplifier envelope
     amp.gain.setValueAtTime(0.0001, now);
-    amp.gain.linearRampToValueAtTime(Math.max(aSustain * 0.5 - 0.01 * fQ, 0), now + aAttack);
-    amp.gain.linearRampToValueAtTime(0.0001, now + aAttack + aDR);
+    amp.gain.linearRampToValueAtTime(
+        Math.max(amp_env_sus * 0.5 - 0.01 * flt_res, 0),
+        now + amp_env_atk,
+    );
+    amp.gain.linearRampToValueAtTime(0.0001, now + amp_env_atk + amp_env_rel);
 
     // master filter (for removing artefacts below 20hz for cleaner sound quality)
     const hpf = ctx.createBiquadFilter();
@@ -79,8 +95,9 @@ export function playNote(patch: Patch) {
 
     // play sound
     osc.start(now);
-    osc.stop(now + Math.max(fAttack + fDR, aAttack + aDR) + 0.1);
+    osc.stop(now + Math.max(flt_env_atk + flt_env_rel, amp_env_atk + amp_env_rel) + 0.1);
 
+    // store oscillator and amp
     currentOscillator = osc;
     currentAmp = amp;
 }

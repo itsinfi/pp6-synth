@@ -4,17 +4,23 @@ import { WaveForm } from '../../../types/enums/WaveForm';
 import './SynthParameterSelector.scss';
 
 type SynthControlsProps = {
+    section: string;
     name: string;
     param: WaveParameter;
     handleSynthValueChange: Function;
 };
 
-function SynthParameterSelector({ name, param, handleSynthValueChange }: SynthControlsProps) {
+function SynthParameterSelector({
+    section,
+    name,
+    param,
+    handleSynthValueChange,
+}: SynthControlsProps) {
     const { config, value } = param;
     const { label } = config;
 
     const handleInput = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-        handleSynthValueChange(name, String(e.target.value));
+        handleSynthValueChange(section, name, String(e.target.value));
     }, []);
 
     return (

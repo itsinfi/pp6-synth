@@ -1,17 +1,12 @@
-import type { NumericParameter, Parameter, WaveParameter } from '../.index';
+import type { EnvelopeSection, FilterSection, OscillatorSection, Section } from '../.index';
 
 export interface Patch {
-    wave: WaveParameter;
-    freq: NumericParameter;
-    fQ: NumericParameter;
-    fAttack: NumericParameter;
-    fSustain: NumericParameter;
-    fDR: NumericParameter;
-    aAttack: NumericParameter;
-    aSustain: NumericParameter;
-    aDR: NumericParameter;
+    oscillator: OscillatorSection;
+    filter: FilterSection;
+    filterEnvelope: EnvelopeSection;
+    ampEnvelope: EnvelopeSection;
 }
 
 export interface Patch {
-    [key: string]: Parameter;
+    [key: string]: Section;
 }

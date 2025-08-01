@@ -1,1 +1,1 @@
-export { default as ManualSynthService } from './ManualSynthService';
+export { default as ManualSynthService } from './SynthPlayerService';

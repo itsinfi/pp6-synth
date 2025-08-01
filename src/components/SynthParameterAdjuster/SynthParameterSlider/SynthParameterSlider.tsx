@@ -3,17 +3,23 @@ import type { NumericParameter } from '../../../types/.index';
 import './SynthParameterSlider.scss';
 
 type SynthControlsProps = {
+    section: string;
     name: string;
     param: NumericParameter;
     handleSynthValueChange: Function;
 };
 
-function SynthParameterSlider({ name, param, handleSynthValueChange }: SynthControlsProps) {
+function SynthParameterSlider({
+    section,
+    name,
+    param,
+    handleSynthValueChange,
+}: SynthControlsProps) {
     const { config, value } = param;
     const { label, min, max, step } = config;
 
     const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        handleSynthValueChange(name, Number(e.target.value));
+        handleSynthValueChange(section, name, Number(e.target.value));
     }, []);
 
     return (

@@ -5,15 +5,22 @@ import SynthParameterSelector from './SynthParameterSelector/SynthParameterSelec
 import SynthParameterSlider from './SynthParameterSlider/SynthParameterSlider';
 
 type SynthControlsProps = {
+    section: string;
     name: string;
     param: Parameter;
     handleSynthValueChange: Function;
 };
 
-function SynthParameterAdjuster({ name, param, handleSynthValueChange }: SynthControlsProps) {
+function SynthParameterAdjuster({
+    section,
+    name,
+    param,
+    handleSynthValueChange,
+}: SynthControlsProps) {
     if (isNumericParameter(param)) {
         return (
             <SynthParameterSlider
+                section={section}
                 name={name}
                 param={param}
                 handleSynthValueChange={handleSynthValueChange}
@@ -22,6 +29,7 @@ function SynthParameterAdjuster({ name, param, handleSynthValueChange }: SynthCo
     } else if (isWaveParameter(param)) {
         return (
             <SynthParameterSelector
+                section={section}
                 name={name}
                 param={param}
                 handleSynthValueChange={handleSynthValueChange}

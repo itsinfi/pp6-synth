@@ -12,3 +12,9 @@ export type { NumericParameter } from './interfaces/Parameters/NumericParameter'
 export type { WaveParameter } from './interfaces/Parameters/WaveParameter';
 export type { Patch } from './interfaces/Patch';
 export type { Section } from './interfaces/Section';
+export { isEnvelopeSection } from './interfaces/Sections/EnvelopeSection';
+export type { EnvelopeSection } from './interfaces/Sections/EnvelopeSection';
+export { isFilterSection } from './interfaces/Sections/FilterSection';
+export type { FilterSection } from './interfaces/Sections/FilterSection';
+export { isOscillatorSection } from './interfaces/Sections/OscillatorSection';
+export type { OscillatorSection } from './interfaces/Sections/OscillatorSection';
