@@ -13,5 +13,5 @@ export default function useKeyPress(key: string, handleKeyPress: Function) {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [key, handleKeyPress]);
 }
