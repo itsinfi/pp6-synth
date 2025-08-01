@@ -52,7 +52,7 @@ export const FLT_ENV_ATTACK_STEP: number = 0.01;
 
 export const FLT_ENV_DECAY_KEY: string = 'flt_env_dec';
 export const FLT_ENV_DECAY: number = 0.3;
-export const FLT_ENV_DECAY_LABEL: string = 'Decay + Release (s)';
+export const FLT_ENV_DECAY_LABEL: string = 'Decay (s)';
 export const FLT_ENV_DECAY_MIN: number = 0.05;
 export const FLT_ENV_DECAY_MAX: number = 3;
 export const FLT_ENV_DECAY_STEP: number = 0.01;
@@ -66,9 +66,9 @@ export const FLT_ENV_SUSTAIN_STEP: number = 10;
 
 export const FLT_ENV_RELEASE_KEY: string = 'flt_env_rel';
 export const FLT_ENV_RELEASE: number = 0.3;
-export const FLT_ENV_RELEASE_LABEL: string = 'Decay + Release (s)';
+export const FLT_ENV_RELEASE_LABEL: string = 'Release (s)';
 export const FLT_ENV_RELEASE_MIN: number = 0.05;
-export const FLT_ENV_RELEASE_MAX: number = 3;
+export const FLT_ENV_RELEASE_MAX: number = 5;
 export const FLT_ENV_RELEASE_STEP: number = 0.01;
 
 export const AMP_ENV_SECTION_LABEL: string = 'Amplifier Envelope';
@@ -82,7 +82,7 @@ export const AMP_ENV_ATTACK_STEP: number = 0.01;
 
 export const AMP_ENV_DECAY_KEY: string = 'amp_env_dec';
 export const AMP_ENV_DECAY: number = 0.3;
-export const AMP_ENV_DECAY_LABEL: string = 'Decay + Release (s)';
+export const AMP_ENV_DECAY_LABEL: string = 'Decay (s)';
 export const AMP_ENV_DECAY_MIN: number = 0.05;
 export const AMP_ENV_DECAY_MAX: number = 3;
 export const AMP_ENV_DECAY_STEP: number = 0.01;
@@ -96,9 +96,9 @@ export const AMP_ENV_SUSTAIN_STEP: number = 0.01;
 
 export const AMP_ENV_RELEASE_KEY: string = 'amp_env_rel';
 export const AMP_ENV_RELEASE: number = 0.3;
-export const AMP_ENV_RELEASE_LABEL: string = 'Decay + Release (s)';
+export const AMP_ENV_RELEASE_LABEL: string = 'Release (s)';
 export const AMP_ENV_RELEASE_MIN: number = 0.05;
-export const AMP_ENV_RELEASE_MAX: number = 3;
+export const AMP_ENV_RELEASE_MAX: number = 5;
 export const AMP_ENV_RELEASE_STEP: number = 0.01;
 
 // Parameter Configs ----------------------------------------------------------------------------------------------------------------------

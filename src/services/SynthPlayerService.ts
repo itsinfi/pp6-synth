@@ -34,7 +34,8 @@ function generateSynthSound({
         amp_env_sus,
         amp_env_rel,
     },
-}: PlayedPatch) {
+    gainModifier,
+}: PlayedPatch): { osc: OscillatorNode; amp: GainNode } {
     // oscillator
     const osc = ctx.createOscillator();
     osc.type = osc_wav;
@@ -57,7 +58,7 @@ function generateSynthSound({
     // apply amplifier envelope
     amp.gain.setValueAtTime(0.0001, now);
     amp.gain.linearRampToValueAtTime(
-        Math.max(amp_env_sus * 0.5 - 0.01 * flt_res, 0),
+        Math.max((amp_env_sus * 0.5 - 0.01 * flt_res) * gainModifier, 0),
         now + amp_env_atk,
     );
     amp.gain.linearRampToValueAtTime(0.0001, now + amp_env_atk + amp_env_rel);
@@ -89,9 +90,7 @@ function generateSynthSound({
     osc.start(now);
     osc.stop(now + Math.max(flt_env_atk + flt_env_rel, amp_env_atk + amp_env_rel) + 0.1);
 
-    // store oscillator and amp
-    currentOscillator = osc;
-    currentAmp = amp;
+    return { osc, amp };
 }
 
 export function playNote(panel: Panel) {
@@ -107,7 +106,11 @@ export function playNote(panel: Panel) {
 
     const { osc_frq: freq, ...patch } = readPanel(panel);
 
-    generateSynthSound({ ctx, now, freq, patch });
+    const { osc, amp } = generateSynthSound({ ctx, now, freq, patch, gainModifier: 1 });
+
+    // store oscillator and amp
+    currentOscillator = osc;
+    currentAmp = amp;
 }
 
 export function playChord(panel: Panel) {
@@ -121,7 +124,18 @@ export function playChord(panel: Panel) {
     currentOscillator?.disconnect();
     currentAmp?.disconnect();
 
-    const { osc_frq: freq, ...patch } = readPanel(panel);
+    const { osc_frq: rootFreq, ...patch } = readPanel(panel);
 
-    generateSynthSound({ ctx, now, freq, patch });
+    // major 7th chord intervals
+    const major7thChord = [1, 1.25, 1.5, 1.875]; // root, major 3rd, fith, major 7th
+
+    major7thChord.forEach((multiplier) => {
+        generateSynthSound({
+            ctx,
+            now,
+            freq: rootFreq * multiplier,
+            patch: { ...patch, flt_ctf: patch.flt_ctf * multiplier },
+            gainModifier: 0.7,
+        });
+    });
 }

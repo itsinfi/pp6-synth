@@ -5,4 +5,5 @@ export interface PlayedPatch {
     now: number;
     freq: number;
     patch: Patch;
+    gainModifier: number;
 }

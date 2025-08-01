@@ -1,6 +1,7 @@
 import { useCallback, useState, type MouseEventHandler } from 'react';
 import { INIT_PANEL } from '../../config/manualPanelConfig.ts';
-import { playNote } from '../../services/SynthPlayerService.ts';
+import useKeyPress from '../../hooks/useKeyPress.ts';
+import { playChord, playNote } from '../../services/SynthPlayerService.ts';
 import type { Panel, WaveForm } from '../../types/.index.ts';
 import { Button } from '../Button/.index.ts';
 import SynthParameterAdjuster from '../SynthParameterAdjuster/SynthParameterAdjuster.tsx';
@@ -9,9 +10,17 @@ import './SynthControls.scss';
 function SynthControls() {
     const [panel, setPanel] = useState<Panel>(INIT_PANEL);
 
-    const handleOnClick: MouseEventHandler<HTMLButtonElement> = () => {
+    const handleOnPlayNote: MouseEventHandler<HTMLButtonElement> = () => {
         playNote(panel);
     };
+
+    const handleOnPlayChord: MouseEventHandler<HTMLButtonElement> = () => {
+        playChord(panel);
+    };
+
+    useKeyPress('N', () => playNote(panel));
+
+    useKeyPress('C', () => playChord(panel));
 
     const handleSynthValueChange = useCallback(
         (section: string, name: string, value: WaveForm | number) => {
@@ -50,9 +59,14 @@ function SynthControls() {
                 </div>
             ))}
 
-            <Button buttonType="Primary" onClick={handleOnClick}>
-                Play Note
-            </Button>
+            <div className="row">
+                <Button buttonType="Primary" onClick={handleOnPlayNote}>
+                    Play Note (n)
+                </Button>
+                <Button buttonType="Secondary" onClick={handleOnPlayChord}>
+                    Play Chord (c)
+                </Button>
+            </div>
         </div>
     );
 }
