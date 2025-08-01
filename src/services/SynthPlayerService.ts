@@ -26,12 +26,12 @@ function generateSynthSound({
         flt_ctf,
         flt_res,
         flt_env_atk,
-        // flt_env_dec,
-        flt_env_sus,
+        // flt_env_dec, // TODO: add decay
+        flt_env_sus, // TODO: fix sustain
         flt_env_rel,
         amp_env_atk,
-        // amp_env_dec,
-        amp_env_sus,
+        // amp_env_dec, // TODO: add decay
+        amp_env_sus, // TODO: fix sustain
         amp_env_rel,
     },
     gainModifier,
