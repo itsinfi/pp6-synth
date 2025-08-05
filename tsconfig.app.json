@@ -26,7 +26,7 @@
     "include": [
         "src",
         "src/types/.index.ts",
-        "src/pages/ManualSynthPanel/.index.ts",
+        "src/pages/.index.ts",
         "src/services/.index.ts",
         "src/components/SynthParameterAdjuster/.index.ts",
         "src/components/Button/.index.ts",

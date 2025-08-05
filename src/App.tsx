@@ -1,7 +1,7 @@
-import { ManualSynthPanel } from './pages/ManualSynthPanel/.index';
+import { ManualSynthPanelPage } from './pages/.index';
 
 function App() {
-    return ManualSynthPanel();
+    return ManualSynthPanelPage();
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import SynthControls from '../../components/SynthControls/SynthControls.tsx';
 
-function ManualSynthPanel() {
+function ManualSynthPanelPage() {
     return <SynthControls />;
 }
 
-export default ManualSynthPanel;
+export default ManualSynthPanelPage;
